@@ -14,23 +14,36 @@ package frc.robot;
  */
 public final class Constants {
 
+// Ports
+
+// Indexer
+public static final int FRONT_INDEXER_WHEEL = 0;
+public static final int BACK_INDEXER_WHEEL = 1;
+
+// Beam breaks
+public static final int TOP_BEAM_BREAK = 0;
+public static final int BOTTEM_BEAM_BREAK = 1;
+
+// Intake
+public static final int INTAKE_ROLLER_MOTOR = 0;
+// public static final int INTAKE_DEPLOY_SOLENOID = 1;
+
+// Shooter
+public static final int SHOOTER_LEADER_MOTOR = 0;
+public static final int SHOOTER_FOLLOWER_MOTOR = 1;
+// public static final int SHOOTER_SERVO = 2;
+public static final double SHOOTER_TO_ENCODER_RATIO = 1;
+public static final double TICKS_PER_ROTATION = 2048;
+
+// CLimber 
+public static final int CLIMBER_LEFT_MOTOR = 0;
+public static final int CLIMBER_RIGHT_MOTOR = 1;
+public static final double CLIMB_ENCODER_LIMIT = 226959;
+public static final double TELESCOPING_TO_MID_BAR_VALUE_RIGHT = 219000;
+public static final double TELESCOPING_TO_MID_BAR_VALUE_LEFT = 200000;
+
 // Drive
  public static final double DRIVE_Y = 0.90;
  public static final double DRIVE_ROT = 0.90;
 
-// Revolver
- public static final double REVOLVER_SPEED = 0.40;
-
-// Intake
- public static final double INTAKE_SPEED = 0.3;
-
-// Shooter
-
-// Yes Camera
-
-// No Camera
- public static final double NEAR_SHOT_SPEED = .3;
- public static final double NEAR_MID_SHOT_SPEED = .5;
- public static final double FAR_MID_SHOT_SPEED = .7;
- public static final double FAR_SHOT_SPEED = .9;
 }
