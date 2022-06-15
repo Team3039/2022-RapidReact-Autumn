@@ -2,40 +2,33 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.auto.commands;
-
-import frc.robot.RobotContainer;
-
+package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.RobotContainer;
 
-public class AutoDrive extends CommandBase { 
-  /** Creates a new AutoDrive. */
-
- 
-  public AutoDrive() {
-
+public class FeedCargoToShooter extends CommandBase {
+  /** Creates a new FeedCargoToShooter. */
+  public FeedCargoToShooter() {
+   addRequirements(RobotContainer.indexer);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-
- 
-  }
+  public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
- //    while (timer.get() < seconds) {   
-       RobotContainer.driveTrain.driveForward(.25);
-    }
-  
+   RobotContainer.indexer.setBackMotor(.5);
+   RobotContainer.indexer.setFrontMotor(.5);
+  }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-     RobotContainer.driveTrain.stopDrive();
+   RobotContainer.indexer.setBackMotor(0);
+   RobotContainer.indexer.setFrontMotor(0);
   }
 
   // Returns true when the command should end.

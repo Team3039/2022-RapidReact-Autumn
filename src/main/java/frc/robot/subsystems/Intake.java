@@ -4,27 +4,41 @@
 
 package frc.robot.subsystems;
 
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMax.IdleMode;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
-import edu.wpi.first.wpilibj.PneumaticsModuleType;
-import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Intake extends SubsystemBase {
   
-  CANSparkMax rollerMotor = new CANSparkMax(Constants.INTAKE_ROLLER_MOTOR, MotorType.kBrushless);
+  VictorSPX rollerMotor = new VictorSPX(Constants.INTAKE_ROLLER_MOTOR);
+  // CANSparkMax rollerMotor = new CANSparkMax(MotorType.kBrushless, Constants.INTAKE_ROLLER_MOTOR);
+  TalonSRX actuateMotor = new TalonSRX(Constants.INTAKE_ACTUATE_MOTOR);
+  
   // Solenoid deployMotor = new Solenoid(PneumaticsModuleType.CTREPCM, Constants.INTAKEDEPLOYSOLENOID);
 
   public Intake() {
-   rollerMotor.setIdleMode(IdleMode.kCoast);
+   rollerMotor.setNeutralMode(NeutralMode.Coast);
+   actuateMotor.setNeutralMode(NeutralMode.Brake);
+
+   actuateMotor.setSelectedSensorPosition(0);
+   actuateMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+
+   actuateMotor.config_kP(0, 0);
+   actuateMotor.config_kI(0, 0);
+   actuateMotor.config_kD(0, 0);
   }
 
   public void setRollerMotor(double RollerMotorSpeed) {
-   rollerMotor.set(RollerMotorSpeed);
+   rollerMotor.set(ControlMode.PercentOutput, RollerMotorSpeed);
+  }
+
+  public void setActuateMotor(double degrees) {
+   actuateMotor.set(ControlMode.Position, degrees);
   }
 
   @Override

@@ -26,7 +26,7 @@ public static final int BOTTEM_BEAM_BREAK = 1;
 
 // Intake
 public static final int INTAKE_ROLLER_MOTOR = 0;
-// public static final int INTAKE_DEPLOY_SOLENOID = 1;
+public static final int INTAKE_ACTUATE_MOTOR = 1;
 
 // Shooter
 public static final int SHOOTER_LEADER_MOTOR = 0;
@@ -42,8 +42,19 @@ public static final double CLIMB_ENCODER_LIMIT = 226959;
 public static final double TELESCOPING_TO_MID_BAR_VALUE_RIGHT = 219000;
 public static final double TELESCOPING_TO_MID_BAR_VALUE_LEFT = 200000;
 
+// LEDS 
+public static final int LED_PORT_A = 0;
+public static final int LED_PORT_B = 1;
+
+// Turret
+public static final int TURRET_MOTOR_ID = 0;
+
 // Drive
  public static final double DRIVE_Y = 0.90;
  public static final double DRIVE_ROT = 0.90;
+ public static final int LEFT_FRONT_MOTOR = 3; // RR
+ public static final int LEFT_REAR_MOTOR = 2;  //RL
+ public static final int RIGHT_FRONT_MOTOR = 1; //LL
+ public static final int RIGHT_REAR_MOTOR = 0; //LR
 
 }

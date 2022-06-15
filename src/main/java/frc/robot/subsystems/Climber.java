@@ -70,6 +70,8 @@ public class Climber extends SubsystemBase {
         leftClimber.setSelectedSensorPosition(value);
         rightClimber.setSelectedSensorPosition(value);
     }
+
+    // public boolean getClimber
     
     @Override
     public void periodic() {

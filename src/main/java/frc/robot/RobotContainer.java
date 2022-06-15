@@ -4,10 +4,28 @@
 
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
+import edu.wpi.first.wpilibj.simulation.DriverStationSim;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.Button;
+import frc.robot.commands.DisableClimbSoftLimits;
+import frc.robot.commands.FeedCargoToShooter;
+import frc.robot.commands.RunIndexer;
+import frc.robot.commands.SetLeftClimber;
+import frc.robot.commands.SetManualTurretMode;
+import frc.robot.commands.SetRightClimber;
+import frc.robot.commands.SetUnjamming;
+import frc.robot.commands.SpinShooter;
 import frc.robot.controllers.PS4Gamepad;
+import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Indexer;
+import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.LEDs;
+import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Turret;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -17,54 +35,63 @@ import frc.robot.subsystems.Drivetrain;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-   public static Drivetrain drivetrain = new Drivetrain();
+   public static Drivetrain driveTrain = new Drivetrain();
+   public static Indexer indexer = new Indexer();
+   public static Intake intake = new Intake();
+   public static LEDs leds = new LEDs();
+   public static Shooter shooter = new Shooter();
+   public static Turret turret = new Turret();
+   public static Climber climber = new Climber();
+
 
    public static PS4Gamepad driverPad = new PS4Gamepad(0);
    public static PS4Gamepad operatorPad = new PS4Gamepad(1);
 
 
-   Button driverX = driverPad.getButtonX();
-   Button driverSquare = driverPad.getButtonSquare();
-   Button driverTriangle = driverPad.getButtonTriangle();
-   Button driverCircle = driverPad.getButtonCircle();
+   private final Button driverX = driverPad.getButtonX();
+   private final Button driverSquare = driverPad.getButtonSquare();
+   private final Button driverTriangle = driverPad.getButtonTriangle();
+   private final Button driverCircle = driverPad.getButtonCircle();
 
-   Button driverShare = driverPad.getShareButton();
-   Button driverOptions = driverPad.getOptionsButton();
-   Button driverPadButton = driverPad.getButtonPad();
-   Button driverStartButton = driverPad.getStartButton();
+   private final Button driverShare = driverPad.getShareButton();
+   private final Button driverOptions = driverPad.getOptionsButton();
+   private final Button driverPadButton = driverPad.getButtonPad();
+   private final Button driverStartButton = driverPad.getStartButton();
 
-   Button driverL1 = driverPad.getL1();
-   Button driverL2 = driverPad.getL2();
-   Button driverL3 = driverPad.getL3();
-   Button driverR1 = driverPad.getR1();
-   Button driverR2 = driverPad.getR2();
-   Button driverR3 = driverPad.getR3();
+   private final Button driverL1 = driverPad.getL1();
+   private final Button driverL2 = driverPad.getL2();
+   private final Button driverL3 = driverPad.getL3();
+   private final Button driverR1 = driverPad.getR1();
+   private final Button driverR2 = driverPad.getR2();
+   private final Button driverR3 = driverPad.getR3();
 
-   Button driverDPadUp = driverPad.getDPadUp();
-   Button driverDPadDown = driverPad.getDPadDown();
-   Button driverDPadLeft = driverPad.getDPadLeft();
-   Button driverDPadRight = driverPad.getDPadRight();
+   private final Button driverDPadUp = driverPad.getDPadUp();
+   private final Button driverDPadDown = driverPad.getDPadDown();
+   private final Button driverDPadLeft = driverPad.getDPadLeft();
+   private final Button driverDPadRight = driverPad.getDPadRight();
 
 
-   Button operatorTriangle = operatorPad.getButtonTriangle();
-   Button operatorSquare = operatorPad.getButtonSquare();
-   Button operatorCircle = operatorPad.getButtonCircle();
-   Button operatorX = operatorPad.getButtonX();
+   private final Button operatorTriangle = operatorPad.getButtonTriangle();
+   private final Button operatorSquare = operatorPad.getButtonSquare();
+   private final Button operatorCircle = operatorPad.getButtonCircle();
+   private final Button operatorX = operatorPad.getButtonX();
 
-   Button operatorShare = operatorPad.getShareButton();
-   Button operatorOptions = operatorPad.getOptionsButton();
-   Button operatorPadButton = operatorPad.getButtonPad();
-   Button operatorStartButton = operatorPad.getStartButton();
+   private final Button operatorShare = operatorPad.getShareButton();
+   private final Button operatorOptions = operatorPad.getOptionsButton();
+   private final Button operatorPadButton = operatorPad.getButtonPad();
+   private final Button operatorStartButton = operatorPad.getStartButton();
 
-   Button operatorL1 = operatorPad.getL1();
-   Button operatorL2 = operatorPad.getL2();
-   Button operatorR1 = operatorPad.getR1();
-   Button operatorR2 = operatorPad.getR2();
+   private final Button operatorL1 = operatorPad.getL1();
+   private final Button operatorL2 = operatorPad.getL2();
+   private final Button operatorL3 = operatorPad.getL3();
+   private final Button operatorR1 = operatorPad.getR1();
+   private final Button operatorR2 = operatorPad.getR2();
+   private final Button operatorR3 = operatorPad.getR3();
    
-   Button operatorDPadDown = operatorPad.getDPadDown();
-   Button operatorDPadUp = operatorPad.getDPadUp();
-   Button operatorDPaLeft = operatorPad.getDPadLeft();
-   Button operatorDPadRight = operatorPad.getDPadRight();
+   private final Button operatorDPadDown = operatorPad.getDPadDown();
+   private final Button operatorDPadUp = operatorPad.getDPadUp();
+   private final Button operatorDPaLeft = operatorPad.getDPadLeft();
+   private final Button operatorDPadRight = operatorPad.getDPadRight();
 
   
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -74,6 +101,36 @@ public class RobotContainer {
 
 
   private void configureButtonBindings() {
+
+    operatorL1.whileHeld(new RunIndexer());
+    operatorR1.toggleWhenPressed(new SpinShooter(2250));
+    operatorL2.whileHeld(new SetUnjamming());
+    operatorR2.whileHeld(new FeedCargoToShooter());
+
+    operatorR3.toggleWhenPressed(new SetManualTurretMode());
+
+    driverStartButton.whenPressed(new InstantCommand(
+        () -> climber.leftClimber.set(ControlMode.Position, Constants.TELESCOPING_TO_MID_BAR_VALUE_LEFT)));
+    driverStartButton.whenPressed(new InstantCommand(
+        () -> climber.rightClimber.set(ControlMode.Position, Constants.TELESCOPING_TO_MID_BAR_VALUE_RIGHT)));
+    driverStartButton.whenReleased(new InstantCommand(() -> climber.leftClimber.set(ControlMode.PercentOutput, 0)));
+    driverStartButton.whenReleased(new InstantCommand(() -> climber.rightClimber.set(ControlMode.PercentOutput, 0)));
+
+    driverL1.whileHeld(new SetLeftClimber(.90));
+    driverL2.whileHeld(new SetLeftClimber(-.90));
+
+    driverR1.whileHeld(new SetRightClimber(.90));
+    driverR2.whileHeld(new SetRightClimber(-.90));
+
+    driverPadButton.toggleWhenPressed(new DisableClimbSoftLimits());
+  }
+
+  public static PS4Gamepad getDriver() {
+   return driverPad;
+  }
+
+  public static PS4Gamepad getOperator() {
+   return operatorPad;
   }
 
   /**

@@ -18,7 +18,7 @@ public class AutoStop extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.drivetrain.stopDrive();
+    RobotContainer.driveTrain.stopDrive();
   }
 
   // Called every time the scheduler runs while the command is scheduled.

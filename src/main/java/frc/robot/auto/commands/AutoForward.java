@@ -18,6 +18,6 @@ public class AutoForward extends InstantCommand {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.drivetrain.driveForward(.3);
+    RobotContainer.driveTrain.driveForward(.3);
   }
 }
