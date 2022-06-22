@@ -33,8 +33,6 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     robotContainer = new RobotContainer();
 
-    CameraServer.getInstance().startAutomaticCapture();
-
     autonTaskChooser = new SendableChooser<>();
 
     autonTaskChooser.setDefaultOption("Do Nothing", new PrintCommand("Do Nothing"));

@@ -21,11 +21,12 @@ import frc.robot.Constants;
 
 public class Climber extends SubsystemBase {
 
-    public TalonFX leftClimber = new TalonFX(Constants.CLIMBER_LEFT_MOTOR, "Drivetrain");
-    public TalonFX rightClimber = new TalonFX(Constants.CLIMBER_RIGHT_MOTOR, "Drivetrain");
+    public TalonFX leftClimber = new TalonFX(Constants.CLIMBER_LEFT_MOTOR);
+    public TalonFX rightClimber = new TalonFX(Constants.CLIMBER_RIGHT_MOTOR);
 
     public Climber() {
-        rightClimber.setInverted(true);
+        rightClimber.setInverted(false);
+        leftClimber.setInverted(true);
 
         leftClimber.setNeutralMode(NeutralMode.Brake);
         rightClimber.setNeutralMode(NeutralMode.Brake);
@@ -45,12 +46,8 @@ public class Climber extends SubsystemBase {
         leftClimber.configForwardSoftLimitThreshold(Constants.CLIMB_ENCODER_LIMIT);
         leftClimber.configForwardSoftLimitEnable(true);
 
-        leftClimber.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
-        rightClimber.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
-
         leftClimber.config_kP(0, 0.8);
         rightClimber.config_kP(0, 0.8);
-
     }
 
     public void setLeftOutput(double percent) {
