@@ -14,8 +14,6 @@ package frc.robot;
  */
 public final class Constants {
 
-// Ports
-
 // Indexer
 public static final int FRONT_INDEXER_WHEEL = 0;
 public static final int BACK_INDEXER_WHEEL = 1;
@@ -36,9 +34,9 @@ public static final double SHOOTER_TO_ENCODER_RATIO = 1;
 public static final double TICKS_PER_ROTATION = 2048;
 
 // CLimber 
-public static final int CLIMBER_LEFT_MOTOR = 0;
-public static final int CLIMBER_RIGHT_MOTOR = 1;
-public static final double CLIMB_ENCODER_LIMIT = 226959;
+public static final int CLIMBER_LEFT_MOTOR = 4;
+public static final int CLIMBER_RIGHT_MOTOR = 5;
+public static final double CLIMB_ENCODER_LIMIT = 130000;
 public static final double TELESCOPING_TO_MID_BAR_VALUE_RIGHT = 219000;
 public static final double TELESCOPING_TO_MID_BAR_VALUE_LEFT = 200000;
 
@@ -52,9 +50,9 @@ public static final int TURRET_MOTOR_ID = 0;
 // Drive
  public static final double DRIVE_Y = 0.90;
  public static final double DRIVE_ROT = 0.90;
- public static final int LEFT_FRONT_MOTOR = 3; // RR
- public static final int LEFT_REAR_MOTOR = 2;  //RL
- public static final int RIGHT_FRONT_MOTOR = 1; //LL
- public static final int RIGHT_REAR_MOTOR = 0; //LR
+ public static final int LEFT_FRONT_MOTOR = 0; // RR
+ public static final int LEFT_REAR_MOTOR = 1;  //RL
+ public static final int RIGHT_FRONT_MOTOR = 2; //LL
+ public static final int RIGHT_REAR_MOTOR = 3; //LR
 
 }

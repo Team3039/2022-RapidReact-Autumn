@@ -116,11 +116,11 @@ public class RobotContainer {
     driverStartButton.whenReleased(new InstantCommand(() -> climber.leftClimber.set(ControlMode.PercentOutput, 0)));
     driverStartButton.whenReleased(new InstantCommand(() -> climber.rightClimber.set(ControlMode.PercentOutput, 0)));
 
-    driverL1.whileHeld(new SetLeftClimber(.90));
-    driverL2.whileHeld(new SetLeftClimber(-.90));
+    driverL1.whileHeld(new SetLeftClimber(.60));
+    driverL2.whileHeld(new SetLeftClimber(-.60));
 
-    driverR1.whileHeld(new SetRightClimber(.90));
-    driverR2.whileHeld(new SetRightClimber(-.90));
+    driverR1.whileHeld(new SetRightClimber(.60));
+    driverR2.whileHeld(new SetRightClimber(-.60));
 
     driverPadButton.toggleWhenPressed(new DisableClimbSoftLimits());
   }
