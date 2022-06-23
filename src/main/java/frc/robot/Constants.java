@@ -31,7 +31,7 @@ public static final int INTAKE_ACTUATE_MOTOR = 1;
 // Shooter
 public static final int SHOOTER_LEADER_MOTOR = 0;
 public static final int SHOOTER_FOLLOWER_MOTOR = 1;
-// public static final int SHOOTER_SERVO = 2;
+public static final int SHOOTER_SOLENOID = 0;
 public static final double SHOOTER_TO_ENCODER_RATIO = 1;
 public static final double TICKS_PER_ROTATION = 2048;
 

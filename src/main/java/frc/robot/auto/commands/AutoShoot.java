@@ -4,43 +4,32 @@
 
 package frc.robot.auto.commands;
 
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
-
-import edu.wpi.first.wpilibj2.command.CommandBase;
-
-public class AutoDrive extends CommandBase { 
-  /** Creates a new AutoDrive. */
-
- 
-  public AutoDrive() {
-
+public class AutoShoot extends CommandBase {
+  /** Creates a new AutoShoot. */
+  public AutoShoot() {
+    // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-
- 
+   RobotContainer.shooter.setShooterPercent(.5);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {
- //    while (timer.get() < seconds) {   
-       RobotContainer.driveTrain.driveForward(.25);
-    }
-  
+  public void execute() {}
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-     RobotContainer.driveTrain.stopDrive();
-  }
+  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+   return true;
   }
 }

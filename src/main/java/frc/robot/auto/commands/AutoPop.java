@@ -5,18 +5,19 @@
 package frc.robot.auto.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
 import frc.robot.RobotContainer;
 
-public class AutoForward extends CommandBase {
-  /** Creates a new AutoForward. */
-  public AutoForward() {
-    // Use addRequirements() here to declare subsystem dependencies.
+public class AutoPop extends CommandBase {
+  boolean on;
+  public AutoPop(boolean on) {
+   this.on = on;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-   RobotContainer.driveTrain.driveForward(.4);
+   RobotContainer.shooter.setBatgirl(on);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

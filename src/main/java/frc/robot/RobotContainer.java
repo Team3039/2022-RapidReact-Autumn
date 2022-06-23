@@ -15,6 +15,7 @@ import frc.robot.commands.SetRightClimber;
 import frc.robot.controllers.PS4Gamepad;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Shooter;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -26,6 +27,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
    public static Drivetrain driveTrain = new Drivetrain();
    public static Climber climber = new Climber();
+   public static Shooter shooter = new Shooter();
 
 
    public static PS4Gamepad driverPad = new PS4Gamepad(0);

@@ -7,16 +7,16 @@ package frc.robot.auto.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
-public class AutoForward extends CommandBase {
-  /** Creates a new AutoForward. */
-  public AutoForward() {
+public class AutoStopShooting extends CommandBase {
+  /** Creates a new AutoStopShooting. */
+  public AutoStopShooting() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-   RobotContainer.driveTrain.driveForward(.4);
+   RobotContainer.shooter.setShooterPercent(0);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -30,6 +30,6 @@ public class AutoForward extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+   return true;
   }
 }
