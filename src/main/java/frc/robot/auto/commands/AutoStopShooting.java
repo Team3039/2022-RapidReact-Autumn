@@ -16,7 +16,7 @@ public class AutoStopShooting extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-   RobotContainer.shooter.setShooterPercent(0);
+   RobotContainer.shooter.setShooterRPM(0);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

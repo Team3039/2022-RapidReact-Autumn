@@ -23,10 +23,10 @@ public class Shooter extends SubsystemBase {
   Solenoid batgirlSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Constants.SHOOTER_SOLENOID);
 
   public Shooter() {
-  //  batmanMotor.setInverted(true);
+   batmanMotor.setInverted(true);
    batmanMotor.setNeutralMode(NeutralMode.Coast);
 
-  //  robinMotor.setInverted(false);
+   robinMotor.setInverted(false);
    robinMotor.setNeutralMode(NeutralMode.Coast);
 
    batmanMotor.config_kP(0, 0.9);
@@ -46,6 +46,7 @@ public class Shooter extends SubsystemBase {
 
   public void setShooterRPM(double rpm) {
    batmanMotor.set(ControlMode.Velocity, RPMToVelocity(rpm));
+   robinMotor.set(ControlMode.Velocity, RPMToVelocity(rpm));
   }
 
   public void setShooterPercent(double percent) {

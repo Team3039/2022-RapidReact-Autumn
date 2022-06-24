@@ -10,6 +10,7 @@ import frc.robot.auto.commands.AutoForward;
 import frc.robot.auto.commands.AutoPop;
 import frc.robot.auto.commands.AutoShoot;
 import frc.robot.auto.commands.AutoStop;
+import frc.robot.auto.commands.AutoStopShooting;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -20,14 +21,15 @@ public class OneBallAuto extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new AutoForward(),
-      new WaitCommand(1),
-      new AutoStop(),
       new AutoShoot(),
+      new AutoForward(),
+      new WaitCommand(2),
+      new AutoStop(),
       new WaitCommand(1),
       new AutoPop(true),
       new WaitCommand(.2),
-      new AutoPop(false)
+      new AutoPop(false),
+      new AutoStopShooting()
       );
   }
 }

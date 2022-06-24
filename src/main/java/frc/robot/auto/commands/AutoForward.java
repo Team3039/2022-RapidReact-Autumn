@@ -16,7 +16,7 @@ public class AutoForward extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-   RobotContainer.driveTrain.driveForward(.4);
+   RobotContainer.driveTrain.driveForward(-.4);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
