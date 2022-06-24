@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj2.command.button.Button;
 import frc.robot.commands.DisableClimbSoftLimits;
 import frc.robot.commands.SetLeftClimber;
 import frc.robot.commands.SetRightClimber;
+import frc.robot.commands.SetShooterRpm;
 import frc.robot.controllers.PS4Gamepad;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivetrain;
@@ -85,8 +86,9 @@ public class RobotContainer {
     configureButtonBindings();
   }
 
-
   private void configureButtonBindings() {
+
+    driverX.toggleWhenPressed(new SetShooterRpm(2300));
 
     driverStartButton.whenPressed(new InstantCommand(
         () -> climber.leftClimber.set(ControlMode.Position, Constants.TELESCOPING_TO_MID_BAR_VALUE_LEFT)));

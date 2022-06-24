@@ -29,9 +29,9 @@ public class Shooter extends SubsystemBase {
    robinMotor.setInverted(false);
    robinMotor.setNeutralMode(NeutralMode.Coast);
 
-   batmanMotor.config_kP(0, 0.9);
+   batmanMotor.config_kP(0, 0.4);
    batmanMotor.config_kI(0, 0.00015);
-   batmanMotor.config_kD(0, 6);
+   batmanMotor.config_kD(0, 8);
 
    robinMotor.follow(batmanMotor);
   }
@@ -51,6 +51,7 @@ public class Shooter extends SubsystemBase {
 
   public void setShooterPercent(double percent) {
    batmanMotor.set(ControlMode.PercentOutput, percent);
+   robinMotor.set(ControlMode.PercentOutput, percent);
   }
 
   public void setBatgirl(boolean batgirlsWheelchair) {
