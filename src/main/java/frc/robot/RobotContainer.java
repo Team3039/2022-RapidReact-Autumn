@@ -88,22 +88,13 @@ public class RobotContainer {
 
   private void configureButtonBindings() {
 
-    driverX.toggleWhenPressed(new SetShooterRpm(2300));
+    operatorL1.whileHeld(new SetLeftClimber(.60));
+    operatorL2.whileHeld(new SetLeftClimber(-.60));
 
-    driverStartButton.whenPressed(new InstantCommand(
-        () -> climber.leftClimber.set(ControlMode.Position, Constants.TELESCOPING_TO_MID_BAR_VALUE_LEFT)));
-    driverStartButton.whenPressed(new InstantCommand(
-        () -> climber.rightClimber.set(ControlMode.Position, Constants.TELESCOPING_TO_MID_BAR_VALUE_RIGHT)));
-    driverStartButton.whenReleased(new InstantCommand(() -> climber.leftClimber.set(ControlMode.PercentOutput, 0)));
-    driverStartButton.whenReleased(new InstantCommand(() -> climber.rightClimber.set(ControlMode.PercentOutput, 0)));
+    operatorR1.whileHeld(new SetRightClimber(.60));
+    operatorR2.whileHeld(new SetRightClimber(-.60));
 
-    driverL1.whileHeld(new SetLeftClimber(.60));
-    driverL2.whileHeld(new SetLeftClimber(-.60));
-
-    driverR1.whileHeld(new SetRightClimber(.60));
-    driverR2.whileHeld(new SetRightClimber(-.60));
-
-    driverPadButton.toggleWhenPressed(new DisableClimbSoftLimits());
+    operatorPadButton.toggleWhenPressed(new DisableClimbSoftLimits());
   }
 
   public static PS4Gamepad getDriver() {

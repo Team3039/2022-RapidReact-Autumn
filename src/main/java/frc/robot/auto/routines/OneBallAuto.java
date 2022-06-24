@@ -23,7 +23,7 @@ public class OneBallAuto extends SequentialCommandGroup {
     addCommands(
       new AutoShoot(),
       new AutoForward(),
-      new WaitCommand(1.5),
+      new WaitCommand(2),
       new AutoStop(),
       new WaitCommand(1),
       new AutoPop(true),
