@@ -6,26 +6,17 @@ package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
-import edu.wpi.first.wpilibj.simulation.DriverStationSim;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import frc.robot.commands.DisableClimbSoftLimits;
-import frc.robot.commands.FeedCargoToShooter;
-import frc.robot.commands.RunIndexer;
 import frc.robot.commands.SetLeftClimber;
-import frc.robot.commands.SetManualTurretMode;
 import frc.robot.commands.SetRightClimber;
-import frc.robot.commands.SetUnjamming;
-import frc.robot.commands.SpinShooter;
+import frc.robot.commands.SetShooterRpm;
 import frc.robot.controllers.PS4Gamepad;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.Indexer;
-import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.LEDs;
 import frc.robot.subsystems.Shooter;
-import frc.robot.subsystems.Turret;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -36,12 +27,8 @@ import frc.robot.subsystems.Turret;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
    public static Drivetrain driveTrain = new Drivetrain();
-   public static Indexer indexer = new Indexer();
-   public static Intake intake = new Intake();
-   public static LEDs leds = new LEDs();
-   public static Shooter shooter = new Shooter();
-   public static Turret turret = new Turret();
    public static Climber climber = new Climber();
+   public static Shooter shooter = new Shooter();
 
 
    public static PS4Gamepad driverPad = new PS4Gamepad(0);
@@ -99,14 +86,12 @@ public class RobotContainer {
     configureButtonBindings();
   }
 
-
   private void configureButtonBindings() {
 
-    operatorL1.whileHeld(new RunIndexer());
-    operatorR1.toggleWhenPressed(new SpinShooter(2250));
-    operatorL2.whileHeld(new SetUnjamming());
-    operatorR2.whileHeld(new FeedCargoToShooter());
+    driverL1.whileHeld(new SetLeftClimber(.60));
+    driverL2.whileHeld(new SetLeftClimber(-.60));
 
+<<<<<<< HEAD
     operatorR3.toggleWhenPressed(new SetManualTurretMode());
 
     driverStartButton.whenPressed(new InstantCommand(
@@ -119,6 +104,8 @@ public class RobotContainer {
     driverL1.whileHeld(new SetLeftClimber(.60));
     driverL2.whileHeld(new SetLeftClimber(-.60));
 
+=======
+>>>>>>> June-Comp
     driverR1.whileHeld(new SetRightClimber(.60));
     driverR2.whileHeld(new SetRightClimber(-.60));
 
@@ -143,5 +130,4 @@ public class RobotContainer {
   
     return null;
   }
-
 }
