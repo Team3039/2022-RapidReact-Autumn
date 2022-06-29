@@ -31,7 +31,7 @@ public static final int INTAKE_ACTUATE_MOTOR = 1;
 // Shooter
 public static final int SHOOTER_LEADER_MOTOR = 11;
 public static final int SHOOTER_FOLLOWER_MOTOR = 12;
-public static final int SHOOTER_SOLENOID = 0;
+public static final int SHOOTER_SOLENOID = 1;
 public static final double SHOOTER_TO_ENCODER_RATIO = 1;
 public static final double TICKS_PER_ROTATION = 2048;
 
@@ -50,8 +50,8 @@ public static final int LED_PORT_B = 1;
 public static final int TURRET_MOTOR_ID = 0;
 
 // Drive
- public static final double DRIVE_Y = 0.90;
- public static final double DRIVE_ROT = 0.90;
+ public static final double DRIVE_Y = 1;
+ public static final double DRIVE_ROT = 1;
  public static final int LEFT_FRONT_MOTOR = 0;
  public static final int LEFT_REAR_MOTOR = 1;  
  public static final int RIGHT_FRONT_MOTOR = 2; 

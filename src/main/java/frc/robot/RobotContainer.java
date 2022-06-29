@@ -88,13 +88,13 @@ public class RobotContainer {
 
   private void configureButtonBindings() {
 
-    operatorL1.whileHeld(new SetLeftClimber(.60));
-    operatorL2.whileHeld(new SetLeftClimber(-.60));
+    driverL1.whileHeld(new SetLeftClimber(.60));
+    driverL2.whileHeld(new SetLeftClimber(-.60));
 
-    operatorR1.whileHeld(new SetRightClimber(.60));
-    operatorR2.whileHeld(new SetRightClimber(-.60));
+    driverR1.whileHeld(new SetRightClimber(.60));
+    driverR2.whileHeld(new SetRightClimber(-.60));
 
-    operatorPadButton.toggleWhenPressed(new DisableClimbSoftLimits());
+    driverPadButton.toggleWhenPressed(new DisableClimbSoftLimits());
   }
 
   public static PS4Gamepad getDriver() {
@@ -115,5 +115,4 @@ public class RobotContainer {
   
     return null;
   }
-
 }

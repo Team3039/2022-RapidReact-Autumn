@@ -16,7 +16,7 @@ public class AutoShoot extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-   RobotContainer.shooter.setShooterPercent(0.5);
+   RobotContainer.shooter.setShooterPercent(0.47);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
