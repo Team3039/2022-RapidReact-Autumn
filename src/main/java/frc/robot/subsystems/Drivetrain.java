@@ -4,27 +4,30 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.sensors.PigeonIMU;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.IdleMode;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
     public class Drivetrain extends SubsystemBase {
-     TalonSRX leftFrontMotor = new TalonSRX(Constants.LEFT_FRONT_MOTOR);
-     TalonSRX leftRearMotor = new TalonSRX(Constants.LEFT_REAR_MOTOR);
-     TalonSRX rightFrontMotor = new TalonSRX(Constants.RIGHT_FRONT_MOTOR);
-     TalonSRX rightRearMotor = new TalonSRX(Constants.RIGHT_REAR_MOTOR);
+     CANSparkMax leftFrontMotor = new CANSparkMax(Constants.LEFT_FRONT_MOTOR, MotorType.kBrushless);
+     CANSparkMax leftRearMotor = new CANSparkMax(Constants.LEFT_REAR_MOTOR, MotorType.kBrushless);
+     CANSparkMax rightFrontMotor = new CANSparkMax(Constants.RIGHT_FRONT_MOTOR, MotorType.kBrushless);
+     CANSparkMax rightRearMotor = new CANSparkMax(Constants.RIGHT_REAR_MOTOR, MotorType.kBrushless);
 
-     PigeonIMU gyro = new PigeonIMU(leftFrontMotor);
+    //  PigeonIMU gyro = new PigeonIMU(leftFrontMotor);
 
     public Drivetrain() {
      rightRearMotor.setInverted(true);
      rightFrontMotor.setInverted(true);
 
-     leftFrontMotor.setNeutralMode(NeutralMode.Brake);
-     leftRearMotor.setNeutralMode(NeutralMode.Brake);
-     rightFrontMotor.setNeutralMode(NeutralMode.Brake);
-     rightRearMotor.setNeutralMode(NeutralMode.Brake);
+     leftFrontMotor.setIdleMode(IdleMode.kBrake);
+     leftRearMotor.setIdleMode(IdleMode.kBrake);
+     rightFrontMotor.setIdleMode(IdleMode.kBrake);
+     rightRearMotor.setIdleMode(IdleMode.kBrake);
         
      leftRearMotor.follow(leftFrontMotor);
      rightRearMotor.follow(rightFrontMotor);
@@ -40,8 +43,8 @@ import frc.robot.RobotContainer;
      double rightOutput = y - rot;
     
      // Assigns Each Motor's Power
-     leftFrontMotor.set(ControlMode.PercentOutput, leftOutput);
-     rightFrontMotor.set(ControlMode.PercentOutput, rightOutput);
+     leftFrontMotor.set(leftOutput);
+     rightFrontMotor.set(rightOutput);
      // leftRearMotor.set(ControlMode.PercentOutput, .2);
      // rightRearMotor.set(ControlMode.PercentOutput, .2);
     }
@@ -49,18 +52,18 @@ import frc.robot.RobotContainer;
 // Auto Methods
 
     public void stopDrive() {
-     leftFrontMotor.set(ControlMode.PercentOutput, 0);
-     rightFrontMotor.set(ControlMode.PercentOutput, 0);
+     leftFrontMotor.set(0);
+     rightFrontMotor.set(0);
     }
 
     public void driveForward(double speed) {
-     leftFrontMotor.set(ControlMode.PercentOutput, speed);
-     rightFrontMotor.set(ControlMode.PercentOutput, speed);
+     leftFrontMotor.set(speed);
+     rightFrontMotor.set(speed);
     }
 
-    public void setGyro(double degrees) {
-     gyro.setYaw(degrees);
-    }
+    // public void setGyro(double degrees) {
+    //  gyro.setYaw(degrees);
+    // }
 
     public void periodic() {
      drive();

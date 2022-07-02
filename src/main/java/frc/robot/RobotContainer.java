@@ -12,11 +12,13 @@ import edu.wpi.first.wpilibj2.command.button.Button;
 import frc.robot.commands.DisableClimbSoftLimits;
 import frc.robot.commands.SetLeftClimber;
 import frc.robot.commands.SetRightClimber;
-import frc.robot.commands.SetShooterRpm;
 import frc.robot.controllers.PS4Gamepad;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Indexer;
+import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Turret;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -29,11 +31,12 @@ public class RobotContainer {
    public static Drivetrain driveTrain = new Drivetrain();
    public static Climber climber = new Climber();
    public static Shooter shooter = new Shooter();
-
+   public static Indexer indexer = new Indexer();
+   public static Intake intake = new Intake();
+   public static Turret turret = new Turret();
 
    public static PS4Gamepad driverPad = new PS4Gamepad(0);
    public static PS4Gamepad operatorPad = new PS4Gamepad(1);
-
 
    private final Button driverX = driverPad.getButtonX();
    private final Button driverSquare = driverPad.getButtonSquare();
@@ -91,9 +94,6 @@ public class RobotContainer {
     driverL1.whileHeld(new SetLeftClimber(.60));
     driverL2.whileHeld(new SetLeftClimber(-.60));
 
-<<<<<<< HEAD
-    operatorR3.toggleWhenPressed(new SetManualTurretMode());
-
     driverStartButton.whenPressed(new InstantCommand(
         () -> climber.leftClimber.set(ControlMode.Position, Constants.TELESCOPING_TO_MID_BAR_VALUE_LEFT)));
     driverStartButton.whenPressed(new InstantCommand(
@@ -104,8 +104,6 @@ public class RobotContainer {
     driverL1.whileHeld(new SetLeftClimber(.60));
     driverL2.whileHeld(new SetLeftClimber(-.60));
 
-=======
->>>>>>> June-Comp
     driverR1.whileHeld(new SetRightClimber(.60));
     driverR2.whileHeld(new SetRightClimber(-.60));
 
