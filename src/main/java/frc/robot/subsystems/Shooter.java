@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.commands.SpinShooter;
 
 public class Shooter extends SubsystemBase {
   
@@ -28,15 +29,15 @@ public class Shooter extends SubsystemBase {
   // private double[] hoodRegressionVariable = {0};
 
   public Shooter() {
-  //  batmanMotor.setInverted(true);
+   batmanMotor.setInverted(true);
    batmanMotor.setNeutralMode(NeutralMode.Coast);
 
-  //  robinMotor.setInverted(false);
+   robinMotor.setInverted(false);
    robinMotor.setNeutralMode(NeutralMode.Coast);
 
-   batmanMotor.config_kP(0, 0.9);
-   batmanMotor.config_kI(0, 0.00015);
-   batmanMotor.config_kD(0, 6);
+   batmanMotor.config_kP(0, .3);
+   batmanMotor.config_kI(0, .000365);
+   batmanMotor.config_kD(0, 12);
 
    robinMotor.follow(batmanMotor);
 
@@ -87,5 +88,6 @@ public class Shooter extends SubsystemBase {
   public void periodic() {
    SmartDashboard.putNumber("Shooter SetPoint Velocity", velocityToRPM(batmanMotor.getSelectedSensorVelocity()));
   //  SmartDashboard.putNumber("Hood Angle", hood.getPosition());
+  //  batmanMotor.set(ControlMode.Velocity, RPMToVelocity(2700));
   }
 }

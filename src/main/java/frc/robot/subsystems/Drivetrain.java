@@ -8,6 +8,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
@@ -35,8 +36,10 @@ import frc.robot.RobotContainer;
 
     // drive using control sticks
     public void drive() {
-     double y = -1 * RobotContainer.driverPad.getLeftYAxis() * Constants.DRIVE_Y;
-     double rot = RobotContainer.driverPad.getRightXAxis() * Constants.DRIVE_ROT;
+     double leftY = MathUtil.applyDeadband(RobotContainer.driverPad.getLeftYAxis(), 0.05);
+     double rightX = MathUtil.applyDeadband(RobotContainer.driverPad.getRightXAxis(), 0.05);
+     double y = -1 * leftY * Constants.DRIVE_Y;
+     double rot = rightX * Constants.DRIVE_ROT;
     
      // Calculated Outputs (Limits Output to 12V)
      double leftOutput = rot + y ;
@@ -45,8 +48,8 @@ import frc.robot.RobotContainer;
      // Assigns Each Motor's Power
      leftFrontMotor.set(leftOutput);
      rightFrontMotor.set(rightOutput);
-     // leftRearMotor.set(ControlMode.PercentOutput, .2);
-     // rightRearMotor.set(ControlMode.PercentOutput, .2);
+     leftRearMotor.set(leftOutput);
+     rightRearMotor.set(rightOutput);
     }
 
 // Auto Methods

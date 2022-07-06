@@ -34,12 +34,12 @@ public Turret() {
  turretMotor.configForwardSoftLimitThreshold(degreesToTicks(90)); // Needs to be configured for new turret
  turretMotor.configReverseSoftLimitThreshold(degreesToTicks(-90)); // Needs to be configured for new turret
 
- turretMotor.configForwardSoftLimitEnable(true);
- turretMotor.configReverseSoftLimitEnable(true);
+ turretMotor.configForwardSoftLimitEnable(false);
+ turretMotor.configReverseSoftLimitEnable(false);
 
- turretMotor.config_kP(0, 0);
- turretMotor.config_kI(0, 0);
- turretMotor.config_kD(0, 0);
+ turretMotor.config_kP(0, .2);
+ turretMotor.config_kI(0, .0000001);
+ turretMotor.config_kD(0, 5);
     
  turretMotor.config_kP(1, 0);
  turretMotor.config_kI(1, 0);
@@ -84,5 +84,7 @@ public void periodic() {
  targetX = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0);
  targetY = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0);
  targetArea = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta").getDouble(0);
+
+ setTurretPosition(90);
  }
 }

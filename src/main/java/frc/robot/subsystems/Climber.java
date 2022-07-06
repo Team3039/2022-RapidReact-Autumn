@@ -35,17 +35,17 @@ public class Climber extends SubsystemBase {
         rightClimber.setSelectedSensorPosition(0);
 
         leftClimber.configReverseSoftLimitThreshold(0);
-        leftClimber.configReverseSoftLimitEnable(true);
+        leftClimber.configReverseSoftLimitEnable(false);
 
         rightClimber.configReverseSoftLimitThreshold(0);
-        rightClimber.configReverseSoftLimitEnable(true);
+        rightClimber.configReverseSoftLimitEnable(false);
 
         rightClimber.configForwardSoftLimitThreshold(Constants.CLIMB_ENCODER_LIMIT);
-        rightClimber.configForwardSoftLimitEnable(true);
+        rightClimber.configForwardSoftLimitEnable(false);
   
         leftClimber.configForwardSoftLimitThreshold(Constants.CLIMB_ENCODER_LIMIT);
-        leftClimber.configForwardSoftLimitEnable(true);
-
+        leftClimber.configForwardSoftLimitEnable(false);
+        
         leftClimber.config_kP(0, 0.8);
         rightClimber.config_kP(0, 0.8);
     }
