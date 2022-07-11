@@ -113,7 +113,7 @@ public class RobotContainer {
 
     driverPadButton.toggleWhenPressed(new DisableClimbSoftLimits());
 
-    operatorR1.toggleWhenPressed(new TrackTarget());
+    driverOptions.toggleWhenPressed(new TrackTarget());
 
     // operatorR1.toggleWhenPressed(new SpinShooter(2500));
   }

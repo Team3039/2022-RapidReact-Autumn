@@ -88,6 +88,6 @@ public class Shooter extends SubsystemBase {
   public void periodic() {
    SmartDashboard.putNumber("Shooter SetPoint Velocity", velocityToRPM(batmanMotor.getSelectedSensorVelocity()));
   //  SmartDashboard.putNumber("Hood Angle", hood.getPosition());
-  //  batmanMotor.set(ControlMode.Velocity, RPMToVelocity(2700));
+  //  batmanMotor.set(ControlMode.Velocity, RPMToVelocity(2400));
   }
 }

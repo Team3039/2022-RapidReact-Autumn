@@ -34,8 +34,8 @@ public Turret() {
  turretMotor.configForwardSoftLimitThreshold(degreesToTicks(90)); // Needs to be configured for new turret
  turretMotor.configReverseSoftLimitThreshold(degreesToTicks(-90)); // Needs to be configured for new turret
 
- turretMotor.configForwardSoftLimitEnable(false);
- turretMotor.configReverseSoftLimitEnable(false);
+ turretMotor.configForwardSoftLimitEnable(true);
+ turretMotor.configReverseSoftLimitEnable(true);
 
  turretMotor.config_kP(0, .2);
  turretMotor.config_kI(0, .0000001);
@@ -57,11 +57,11 @@ public void setTurretPosition(double targetAngle) {
 }
 
 public double degreesToTicks(double theta) {
- return theta * (22320 / 360);
+ return theta * (14420 / 90);
 }
 
 public double getCurrentAngle() {
- return (turretMotor.getSelectedSensorPosition() / 22320) * 360;
+ return (turretMotor.getSelectedSensorPosition() / 14420) * 90;
 }
 
 public void stop() {
@@ -77,6 +77,7 @@ public void periodic() {
 // This method will be called once per scheduler run
  SmartDashboard.putNumber("Current Angle", getCurrentAngle());
  SmartDashboard.putNumber("TargetX", targetX);
+ SmartDashboard.putNumber("Turret Encoder", turretMotor.getSelectedSensorPosition());
 
  SmartDashboard.putBoolean("Is At Target Position", isAtTargetPositon);
 
@@ -85,6 +86,6 @@ public void periodic() {
  targetY = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0);
  targetArea = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta").getDouble(0);
 
- setTurretPosition(90);
+//  setTurretPosition(0);
  }
 }
