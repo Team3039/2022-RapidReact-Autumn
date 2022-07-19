@@ -36,10 +36,16 @@ public class Shooter extends SubsystemBase {
    robinMotor.setNeutralMode(NeutralMode.Coast);
 
    batmanMotor.config_kP(0, .3);
-   batmanMotor.config_kI(0, .0002);
-   batmanMotor.config_kD(0, 12);
+   batmanMotor.config_kI(0, .000000000069);
+   batmanMotor.config_kD(0, 7.5);
+   batmanMotor.config_kF(0, .04966019417);
 
-   robinMotor.follow(batmanMotor);
+   robinMotor.config_kP(0, .3);
+   robinMotor.config_kI(0, .000000000069);
+   robinMotor.config_kD(0, 7.5);
+   robinMotor.config_kF(0, .04966019417);
+
+  //  robinMotor.follow(batmanMotor);
 
   //  shooterMap = new InterpolatingTreeMap<InterpolatingDouble, Vector2>();
 
@@ -88,7 +94,9 @@ public class Shooter extends SubsystemBase {
 
   @Override
   public void periodic() {
-   SmartDashboard.putNumber("Shooter SetPoint Velocity", velocityToRPM(batmanMotor.getSelectedSensorVelocity()));
+   SmartDashboard.putNumber("Shooter RPM", velocityToRPM(batmanMotor.getSelectedSensorVelocity()));
+   SmartDashboard.putNumber("Shooter Velocity", batmanMotor.getSelectedSensorVelocity());
+  //  setShooterRPM(2642);
   //  SmartDashboard.putNumber("Hood Angle", hood.getPosition());
   //  batmanMotor.set(ControlMode.Velocity, RPMToVelocity(2400));
   }
