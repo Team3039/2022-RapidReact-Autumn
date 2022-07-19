@@ -20,19 +20,20 @@ public class SpinShooter extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-   RobotContainer.shooter.setShooterRPM(rpm);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
    RobotContainer.turret.trackTarget();
+   RobotContainer.shooter.setShooterRPM(rpm);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.shooter.setShooterRPM(0);
+
+    RobotContainer.shooter.setShooterPercent(0);
   }
 
   // Returns true when the command should end.

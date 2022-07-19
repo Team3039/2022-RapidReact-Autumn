@@ -36,7 +36,7 @@ public class Shooter extends SubsystemBase {
    robinMotor.setNeutralMode(NeutralMode.Coast);
 
    batmanMotor.config_kP(0, .3);
-   batmanMotor.config_kI(0, .000365);
+   batmanMotor.config_kI(0, .0002);
    batmanMotor.config_kD(0, 12);
 
    robinMotor.follow(batmanMotor);
@@ -58,10 +58,12 @@ public class Shooter extends SubsystemBase {
 
   public void setShooterRPM(double rpm) {
    batmanMotor.set(ControlMode.Velocity, RPMToVelocity(rpm));
+   robinMotor.set(ControlMode.Velocity, RPMToVelocity(rpm));
   }
 
   public void setShooterPercent(double percent) {
    batmanMotor.set(ControlMode.PercentOutput, percent);
+   robinMotor.set(ControlMode.PercentOutput, percent);
   }
 
   // public void setHoodAngle(double pos) {

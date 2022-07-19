@@ -14,8 +14,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Indexer extends SubsystemBase {
- VictorSPX frontWheelMotor = new VictorSPX(Constants.FRONT_INDEXER_WHEEL);
- VictorSPX backWheelMotor = new VictorSPX(Constants.BACK_INDEXER_WHEEL);
+ TalonSRX frontWheelMotor = new TalonSRX(Constants.FRONT_INDEXER_WHEEL);
+ TalonSRX backWheelMotor = new TalonSRX(Constants.BACK_INDEXER_WHEEL);
 
  DigitalInput topGate = new DigitalInput(Constants.TOP_BEAM_BREAK);
  DigitalInput bottemGate = new DigitalInput(Constants.BOTTEM_BEAM_BREAK);

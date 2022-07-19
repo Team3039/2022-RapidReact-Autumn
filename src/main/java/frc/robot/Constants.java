@@ -16,7 +16,7 @@ public final class Constants {
 
 // Indexer
 public static final int FRONT_INDEXER_WHEEL = 0;
-public static final int BACK_INDEXER_WHEEL = 1;
+public static final int BACK_INDEXER_WHEEL = 8;
 
 // Beam breaks
 public static final int TOP_BEAM_BREAK = 0;
@@ -48,8 +48,8 @@ public static final int LED_PORT_B = 1;
 public static final int TURRET_MOTOR_ID = 10;
 
 // Drive
- public static final double DRIVE_Y = 0.90;
- public static final double DRIVE_ROT = 0.90;
+ public static final double DRIVE_Y = 0.70;
+ public static final double DRIVE_ROT = 0.70;
  public static final int LEFT_FRONT_MOTOR = 1; // RR
  public static final int LEFT_REAR_MOTOR = 2;  //RL
  public static final int RIGHT_FRONT_MOTOR = 4; //LL

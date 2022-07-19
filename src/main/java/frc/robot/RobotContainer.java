@@ -6,12 +6,11 @@ package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
-import org.opencv.video.TrackerMIL_Params;
-
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import frc.robot.commands.DisableClimbSoftLimits;
+import frc.robot.commands.FeedCargoToShooter;
 import frc.robot.commands.SetLeftClimber;
 import frc.robot.commands.SetRightClimber;
 import frc.robot.commands.SpinShooter;
@@ -115,7 +114,8 @@ public class RobotContainer {
 
     driverOptions.toggleWhenPressed(new TrackTarget());
 
-    // operatorR1.toggleWhenPressed(new SpinShooter(2500));
+    operatorR1.toggleWhenPressed(new SpinShooter(2500));
+    operatorR2.whileHeld(new FeedCargoToShooter());
   }
 
   public static PS4Gamepad getDriver() {
