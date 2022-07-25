@@ -48,8 +48,8 @@ public void indexCargo() {
  }
 
 public void unjam() {
- setFrontMotor(-.5);
- setBackMotor(-.5);
+ setFrontMotor(-.35);
+ setBackMotor(-.35);
  }
 
 @Override 

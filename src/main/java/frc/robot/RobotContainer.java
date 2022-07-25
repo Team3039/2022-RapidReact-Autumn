@@ -11,9 +11,13 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import frc.robot.commands.DisableClimbSoftLimits;
 import frc.robot.commands.FeedCargoToShooter;
+import frc.robot.commands.RunIndexer;
 import frc.robot.commands.SetLeftClimber;
 import frc.robot.commands.SetRightClimber;
+import frc.robot.commands.SetUnjamming;
 import frc.robot.commands.SpinShooter;
+import frc.robot.commands.StartIndexer;
+import frc.robot.commands.StartShooter;
 import frc.robot.commands.TrackTarget;
 import frc.robot.controllers.PS4Gamepad;
 import frc.robot.subsystems.Climber;
@@ -110,11 +114,15 @@ public class RobotContainer {
     driverR1.whileHeld(new SetRightClimber(.60));
     driverR2.whileHeld(new SetRightClimber(-.60));
 
+    
     driverPadButton.toggleWhenPressed(new DisableClimbSoftLimits());
-
+    
     driverOptions.toggleWhenPressed(new TrackTarget());
-
+    
     operatorR1.toggleWhenPressed(new SpinShooter(2500));
+    operatorL1.toggleWhenPressed(new StartIndexer()); // Need to configure intake
+    // operatorR1.toggleWhenPressed(new RunIndexer());
+    operatorL2.whileHeld(new SetUnjamming());
     operatorR2.whileHeld(new FeedCargoToShooter());
   }
 

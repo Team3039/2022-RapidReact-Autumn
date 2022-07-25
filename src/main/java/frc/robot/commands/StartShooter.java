@@ -6,11 +6,12 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
+import frc.robot.subsystems.Shooter;
 
-public class FeedCargoToShooter extends CommandBase {
-  /** Creates a new FeedCargoToShooter. */
-  public FeedCargoToShooter() {
-   addRequirements(RobotContainer.indexer);
+public class StartShooter extends CommandBase {
+  /** Creates a new StartShooter. */
+  public StartShooter() {
+    // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
@@ -20,15 +21,13 @@ public class FeedCargoToShooter extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-   RobotContainer.indexer.setBackMotor(.35);
-  //  RobotContainer.indexer.setFrontMotor(.5);
+   RobotContainer.shooter.setShooterRPM(2642);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-   RobotContainer.indexer.setBackMotor(0);
-  //  RobotContainer.indexer.setFrontMotor(0);
+   RobotContainer.shooter.setShooterRPM(0);
   }
 
   // Returns true when the command should end.
