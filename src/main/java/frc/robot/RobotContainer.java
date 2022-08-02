@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj2.command.button.Button;
 import frc.robot.commands.DisableClimbSoftLimits;
 import frc.robot.commands.FeedCargoToShooter;
 import frc.robot.commands.RunIndexer;
+import frc.robot.commands.SetIntake;
 import frc.robot.commands.SetLeftClimber;
 import frc.robot.commands.SetRightClimber;
 import frc.robot.commands.SetUnjamming;
@@ -120,10 +121,11 @@ public class RobotContainer {
     driverOptions.toggleWhenPressed(new TrackTarget());
     
     operatorR1.toggleWhenPressed(new SpinShooter(2500));
-    operatorL1.toggleWhenPressed(new StartIndexer()); // Need to configure intake
-    // operatorR1.toggleWhenPressed(new RunIndexer());
+    operatorL1.toggleWhenPressed(new SetIntake());
     operatorL2.whileHeld(new SetUnjamming());
     operatorR2.whileHeld(new FeedCargoToShooter());
+
+    operatorShare.toggleWhenPressed(new TrackTarget());
   }
 
   public static PS4Gamepad getDriver() {

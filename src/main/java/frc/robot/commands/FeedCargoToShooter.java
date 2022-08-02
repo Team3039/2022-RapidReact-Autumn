@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
 import frc.robot.RobotContainer;
 
 public class FeedCargoToShooter extends CommandBase {
@@ -21,7 +22,8 @@ public class FeedCargoToShooter extends CommandBase {
   @Override
   public void execute() {
    RobotContainer.indexer.setBackMotor(.35);
-  //  RobotContainer.indexer.setFrontMotor(.5);
+   RobotContainer.indexer.setFrontMotor(.35);
+  //  RobotContainer.indexer.indexCargo();
   }
 
   // Called once the command ends or is interrupted.

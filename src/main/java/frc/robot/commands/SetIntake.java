@@ -6,11 +6,10 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.Shooter;
 
-public class StartShooter extends CommandBase {
-  /** Creates a new StartShooter. */
-  public StartShooter() {
+public class SetIntake extends CommandBase {
+  /** Creates a new SetIntake. */
+  public SetIntake() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -21,13 +20,20 @@ public class StartShooter extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-   RobotContainer.shooter.setShooterRPM(2500);
+   RobotContainer.intake.setActuateMotor(90);
+   RobotContainer.intake.setRollerMotor(.25);
+  //  RobotContainer.indexer.indexCargo();
+   RobotContainer.indexer.setFrontMotor(.25);
+   RobotContainer.indexer.setBackMotor(.25);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-   RobotContainer.shooter.setShooterRPM(0);
+   RobotContainer.intake.setActuateMotor(0);
+   RobotContainer.intake.setRollerMotor(0);
+   RobotContainer.indexer.setFrontMotor(0);
+   RobotContainer.indexer.setBackMotor(0);
   }
 
   // Returns true when the command should end.

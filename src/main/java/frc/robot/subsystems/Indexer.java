@@ -35,11 +35,11 @@ public void setBackMotor(double backMotorOutput) {
 
 public void indexCargo() {
  if(topGate.get()) {
-  setFrontMotor(.5);
-  setBackMotor(.5);
+  setFrontMotor(.35);
+  setBackMotor(.35);
  }
  if((!topGate.get() && bottemGate.get())) {
-  setFrontMotor(.5);
+  setFrontMotor(.35);
   setBackMotor(0);
   } else {
    setFrontMotor(0);
