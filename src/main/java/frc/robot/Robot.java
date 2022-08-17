@@ -38,10 +38,6 @@ public class Robot extends TimedRobot {
 
     autonTaskChooser.setDefaultOption("Do Nothing", new PrintCommand("Do Nothing"));
 
-    // autonTaskChooser.addOption("One Ball Autonomous", new OneBallAuto());
-
-    // autonTaskChooser.addOption("Drive Foward", new DriveForward());
-
     SmartDashboard.putData("Autonomous", autonTaskChooser);
 
 

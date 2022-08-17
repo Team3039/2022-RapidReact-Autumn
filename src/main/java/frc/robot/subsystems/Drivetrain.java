@@ -19,7 +19,7 @@ import frc.robot.RobotContainer;
      CANSparkMax rightFrontMotor = new CANSparkMax(Constants.RIGHT_FRONT_MOTOR, MotorType.kBrushless);
      CANSparkMax rightRearMotor = new CANSparkMax(Constants.RIGHT_REAR_MOTOR, MotorType.kBrushless);
 
-    //  PigeonIMU gyro = new PigeonIMU(leftFrontMotor);
+    //  PigeonIMU gyro = new PigeonIMU();
 
     public Drivetrain() {
      rightRearMotor.setInverted(true);
@@ -52,17 +52,7 @@ import frc.robot.RobotContainer;
      rightRearMotor.set(rightOutput);
     }
 
-// Auto Methods
-
-    public void stopDrive() {
-     leftFrontMotor.set(0);
-     rightFrontMotor.set(0);
-    }
-
-    public void driveForward(double speed) {
-     leftFrontMotor.set(speed);
-     rightFrontMotor.set(speed);
-    }
+    
 
     // public void setGyro(double degrees) {
     //  gyro.setYaw(degrees);

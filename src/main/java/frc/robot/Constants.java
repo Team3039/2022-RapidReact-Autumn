@@ -15,7 +15,7 @@ package frc.robot;
 public final class Constants {
 
 // Indexer
-public static final int FRONT_INDEXER_WHEEL = 0;
+public static final int FRONT_INDEXER_WHEEL = 9;
 public static final int BACK_INDEXER_WHEEL = 8;
 
 // Beam breaks
@@ -23,13 +23,12 @@ public static final int TOP_BEAM_BREAK = 0;
 public static final int BOTTEM_BEAM_BREAK = 1;
 
 // Intake
-public static final int INTAKE_ROLLER_MOTOR = 0;
-public static final int INTAKE_ACTUATE_MOTOR = 1;
+public static final int INTAKE_ROLLER_MOTOR = 7;
+public static final int INTAKE_ACTUATE_MOTOR = 0;
 
 // Shooter
 public static final int SHOOTER_LEADER_MOTOR = 11;
 public static final int SHOOTER_FOLLOWER_MOTOR = 12;
-// public static final int SHOOTER_SERVO = 2;
 public static final double SHOOTER_TO_ENCODER_RATIO = 1;
 public static final double TICKS_PER_ROTATION = 2048;
 

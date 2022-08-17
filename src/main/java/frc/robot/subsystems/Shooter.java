@@ -18,15 +18,10 @@ public class Shooter extends SubsystemBase {
   
   TalonFX batmanMotor = new TalonFX(Constants.SHOOTER_LEADER_MOTOR);
   TalonFX robinMotor = new TalonFX(Constants.SHOOTER_FOLLOWER_MOTOR);
-  // Servo redHood = new Servo(Constants.SHOOTER_SERVO);
 
   public static double setPoint = 0;
   public static boolean isAtSetpoint = false;
 
-  // public static InterpolatingTreeMap<InterpolatingDouble, Vector2> shooterMap;
-
-  // private double[] RPMRegressionVariable = {0};
-  // private double[] hoodRegressionVariable = {0};
 
   public Shooter() {
    batmanMotor.setInverted(true);
@@ -44,14 +39,6 @@ public class Shooter extends SubsystemBase {
    robinMotor.config_kI(0, .000000000069);
    robinMotor.config_kD(0, 7.5);
    robinMotor.config_kF(0, .04966019417);
-
-  //  robinMotor.follow(batmanMotor);
-
-  //  shooterMap = new InterpolatingTreeMap<InterpolatingDouble, Vector2>();
-
-  //  shooterMap.put(new InterpolatingDouble(Double.valueOf(-8.3)), new Vector2(2200, 0));
-  //  shooterMap.put(new InterpolatingDouble(Double.valueOf(-14)), new Vector2(2600, 0.2));
-  //  shooterMap.put(new InterpolatingDouble(Double.valueOf(-17)), new Vector2(2800, 0.4));
   }
 
   public double velocityToRPM(double velocity) {
