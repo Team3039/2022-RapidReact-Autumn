@@ -4,21 +4,11 @@
 
 package frc.robot;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import frc.robot.commands.DisableClimbSoftLimits;
-import frc.robot.commands.FeedCargoToShooter;
-import frc.robot.commands.RunIndexer;
-import frc.robot.commands.SetIntake;
 import frc.robot.commands.SetLeftClimber;
 import frc.robot.commands.SetRightClimber;
-import frc.robot.commands.SetUnjamming;
-import frc.robot.commands.SpinShooter;
-import frc.robot.commands.StartIndexer;
-import frc.robot.commands.StartShooter;
 import frc.robot.commands.TrackTarget;
 import frc.robot.controllers.PS4Gamepad;
 import frc.robot.subsystems.Climber;
@@ -36,12 +26,12 @@ import frc.robot.subsystems.Turret;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-   public static Drivetrain driveTrain = new Drivetrain();
    public static Climber climber = new Climber();
    public static Shooter shooter = new Shooter();
    public static Indexer indexer = new Indexer();
    public static Intake intake = new Intake();
    public static Turret turret = new Turret();
+   public static Drivetrain drivetrain = new Drivetrain();
 
    public static PS4Gamepad driverPad = new PS4Gamepad(0);
    public static PS4Gamepad operatorPad = new PS4Gamepad(1);
@@ -102,16 +92,6 @@ public class RobotContainer {
     driverL1.whileHeld(new SetLeftClimber(.60));
     driverL2.whileHeld(new SetLeftClimber(-.60));
 
-    driverStartButton.whenPressed(new InstantCommand(
-        () -> climber.leftClimber.set(ControlMode.Position, Constants.TELESCOPING_TO_MID_BAR_VALUE_LEFT)));
-    driverStartButton.whenPressed(new InstantCommand(
-        () -> climber.rightClimber.set(ControlMode.Position, Constants.TELESCOPING_TO_MID_BAR_VALUE_RIGHT)));
-    driverStartButton.whenReleased(new InstantCommand(() -> climber.leftClimber.set(ControlMode.PercentOutput, 0)));
-    driverStartButton.whenReleased(new InstantCommand(() -> climber.rightClimber.set(ControlMode.PercentOutput, 0)));
-
-    driverL1.whileHeld(new SetLeftClimber(.60));
-    driverL2.whileHeld(new SetLeftClimber(-.60));
-
     driverR1.whileHeld(new SetRightClimber(.60));
     driverR2.whileHeld(new SetRightClimber(-.60));
 
@@ -120,10 +100,10 @@ public class RobotContainer {
     
     driverOptions.toggleWhenPressed(new TrackTarget());
     
-    operatorR1.toggleWhenPressed(new SpinShooter(2500));
-    operatorL1.toggleWhenPressed(new SetIntake());
-    operatorL2.whileHeld(new SetUnjamming());
-    operatorR2.whileHeld(new FeedCargoToShooter());
+    // operatorR1.toggleWhenPressed(new SpinShooter(2500));
+    // operatorL1.toggleWhenPressed(new SetIntake());
+    // operatorL2.whileHeld(new SetUnjamming());
+    // operatorR2.whileHeld(new FeedCargoToShooter());
 
     operatorShare.toggleWhenPressed(new TrackTarget());
   }

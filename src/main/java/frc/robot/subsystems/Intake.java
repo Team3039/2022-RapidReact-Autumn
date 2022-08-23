@@ -15,6 +15,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 
 public class Intake extends SubsystemBase {
   
@@ -23,11 +24,15 @@ public class Intake extends SubsystemBase {
   
   public boolean isIntakeActuated = false;
 
+  // Negative voltage brings intake up, positive voltage brings intake down
   public Intake() {
+   actuateMotor.setInverted(true);
    rollerMotor.setIdleMode(IdleMode.kCoast);
    actuateMotor.setNeutralMode(NeutralMode.Brake);
 
    actuateMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
+  //  actuateMotor.setSelectedSensorPosition(0);
+   actuateMotor.setSensorPhase(true);
 
    actuateMotor.config_kP(0, 0.1);
    actuateMotor.config_kI(0, 0);
@@ -35,7 +40,7 @@ public class Intake extends SubsystemBase {
 
    actuateMotor.configForwardSoftLimitEnable(true);
    actuateMotor.configReverseSoftLimitEnable(true);
-   actuateMotor.configForwardSoftLimitThreshold(1350);
+   actuateMotor.configForwardSoftLimitThreshold(1700);
    actuateMotor.configReverseSoftLimitThreshold(0);
   }
 
@@ -52,9 +57,16 @@ public class Intake extends SubsystemBase {
    }
   }
 
+  public void manualIntake() {
+    actuateMotor.set(ControlMode.PercentOutput, RobotContainer.getOperator().getLeftYAxis() * 0.15);
+  }
+
   @Override
   public void periodic() {
-    setActuateMotor(isIntakeActuated);
+    // actuateMotor.set(ControlMode.Position, 0);
+    // setActuateMotor(isIntakeActuated);
+
+    manualIntake();
 
     System.out.println(actuateMotor.getSelectedSensorPosition());
     SmartDashboard.putNumber("intake encoder", actuateMotor.getSelectedSensorPosition());

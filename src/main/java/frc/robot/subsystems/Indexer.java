@@ -10,15 +10,16 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Indexer extends SubsystemBase {
- TalonSRX frontWheelMotor = new TalonSRX(Constants.FRONT_INDEXER_WHEEL);
- TalonSRX backWheelMotor = new TalonSRX(Constants.BACK_INDEXER_WHEEL);
+ public TalonSRX frontWheelMotor = new TalonSRX(Constants.FRONT_INDEXER_WHEEL);
+ public TalonSRX backWheelMotor = new TalonSRX(Constants.BACK_INDEXER_WHEEL);
 
  DigitalInput topGate = new DigitalInput(Constants.TOP_BEAM_BREAK);
- DigitalInput bottemGate = new DigitalInput(Constants.BOTTEM_BEAM_BREAK);
+ DigitalInput bottomGate = new DigitalInput(Constants.BOTTOM_BEAM_BREAK);
 
 public Indexer() {
  frontWheelMotor.setNeutralMode(NeutralMode.Brake);
@@ -35,11 +36,11 @@ public void setBackMotor(double backMotorOutput) {
 
 public void indexCargo() {
  if(topGate.get()) {
-  setFrontMotor(.35);
-  setBackMotor(.35);
+  setFrontMotor(.25);
+  setBackMotor(.25);
  }
- if((!topGate.get() && bottemGate.get())) {
-  setFrontMotor(.35);
+ if((!topGate.get() && bottomGate.get())) {
+  setFrontMotor(.25);
   setBackMotor(0);
   } else {
    setFrontMotor(0);
@@ -55,7 +56,7 @@ public void unjam() {
 @Override 
 public void periodic() {
 // This method will be called once per scheduler run
-// setBackMotor(.2);
-// setFrontMotor(.2);
+SmartDashboard.putBoolean("First Stage Beam Break", bottomGate.get());
+SmartDashboard.putBoolean("Second Stage Beam Break", topGate.get());
  }
 }

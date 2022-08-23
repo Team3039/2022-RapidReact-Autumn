@@ -2,38 +2,38 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands;
+package frc.robot.auto.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Robot;
 import frc.robot.RobotContainer;
 
-public class DisableClimbSoftLimits extends CommandBase {
-  /** Creates a new DisableClimbSoftLimits. */
-  public DisableClimbSoftLimits() {
+public class AutoIndexCargo extends CommandBase {
+  /** Creates a new AutoIndexCargo. */
+  public AutoIndexCargo() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-  RobotContainer.climber.toggleSoftLimits(false);
+    RobotContainer.intake.setRollerMotor(.3);
+    RobotContainer.intake.isIntakeActuated = true;
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    RobotContainer.indexer.indexCargo();
+  }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-   RobotContainer.climber.setClimbEncoders(0);
-   RobotContainer.climber.toggleSoftLimits(true);
-  }
+  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }
