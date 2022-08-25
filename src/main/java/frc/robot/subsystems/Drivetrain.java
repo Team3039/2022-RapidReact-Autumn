@@ -25,7 +25,7 @@ import frc.robot.RobotContainer;
 
      PigeonIMU gyro = new PigeonIMU(RobotContainer.indexer.backWheelMotor);
 
-     DifferentialDrive drivetrain = new DifferentialDrive(leftFrontMotor, rightFrontMotor);
+    //  DifferentialDrive drivetrain = new DifferentialDrive(leftFrontMotor, rightFrontMotor);
 
      DifferentialDriveOdometry driveOdometry; 
 
@@ -48,8 +48,8 @@ import frc.robot.RobotContainer;
 
     // drive using control sticks
     public void drive() {
-     double leftY = MathUtil.applyDeadband(RobotContainer.driverPad.getLeftYAxis(), 0.05);
-     double rightX = MathUtil.applyDeadband(RobotContainer.driverPad.getRightXAxis(), 0.05);
+     double leftY = MathUtil.applyDeadband(RobotContainer.operatorPad.getLeftYAxis(), 0.05);
+     double rightX = MathUtil.applyDeadband(RobotContainer.operatorPad.getRightXAxis(), 0.05);
      double y = -1 * leftY * Constants.DRIVE_Y;
      double rot = rightX * Constants.DRIVE_ROT;
     
@@ -67,7 +67,7 @@ import frc.robot.RobotContainer;
     public void tankDriveVolts(double leftVolts, double rightVolts) {
         leftFrontMotor.setVoltage(leftVolts);
         rightFrontMotor.setVoltage(rightVolts);
-        drivetrain.feed();
+        // drivetrain.feed();
       }
 
     // REV Neo integrated encoder's native units are rotations.

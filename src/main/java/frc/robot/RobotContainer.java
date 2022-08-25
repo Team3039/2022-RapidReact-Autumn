@@ -7,8 +7,12 @@ package frc.robot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import frc.robot.commands.DisableClimbSoftLimits;
+import frc.robot.commands.FeedCargoToShooter;
+import frc.robot.commands.SetIndexingSequence;
 import frc.robot.commands.SetLeftClimber;
 import frc.robot.commands.SetRightClimber;
+import frc.robot.commands.SetUnjamming;
+import frc.robot.commands.SpinShooter;
 import frc.robot.commands.TrackTarget;
 import frc.robot.controllers.PS4Gamepad;
 import frc.robot.subsystems.Climber;
@@ -100,11 +104,14 @@ public class RobotContainer {
     
     driverOptions.toggleWhenPressed(new TrackTarget());
     
-    // operatorR1.toggleWhenPressed(new SpinShooter(2500));
-    // operatorL1.toggleWhenPressed(new SetIntake());
-    // operatorL2.whileHeld(new SetUnjamming());
-    // operatorR2.whileHeld(new FeedCargoToShooter());
+    // Shooter Rotations Per Minute
+    operatorR1.toggleWhenPressed(new SpinShooter(2500));
+    // intake, front indexer wheels, back indexer wheels (0 is neutral, 1 is 100%)
+    operatorL1.toggleWhenPressed(new SetIndexingSequence(.4, .6, .4));
+    // front indexer wheels, back indexer wheels (0 is neutral, 1 is 100%)
+    operatorR2.whileHeld(new FeedCargoToShooter(.4, .4));
 
+    operatorL2.whileHeld(new SetUnjamming());
     operatorShare.toggleWhenPressed(new TrackTarget());
   }
 

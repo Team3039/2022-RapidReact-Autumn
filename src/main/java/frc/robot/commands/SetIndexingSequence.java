@@ -5,13 +5,19 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Robot;
 import frc.robot.RobotContainer;
 
-public class StartIndexer extends CommandBase {
-  /** Creates a new StartIndexer. */
-  public StartIndexer() {
+public class SetIndexingSequence extends CommandBase {
+  /** Creates a new SetIntake. */
+  double intakeSpd;
+  double frontSpd;
+  double backSpd;
+
+  public SetIndexingSequence(double intakeSpd, double frontSpd, double backSpd) {
     // Use addRequirements() here to declare subsystem dependencies.
+    this.intakeSpd = intakeSpd;
+    this.frontSpd = frontSpd;
+    this.backSpd = backSpd;
   }
 
   // Called when the command is initially scheduled.
@@ -21,13 +27,16 @@ public class StartIndexer extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-   RobotContainer.indexer.setFrontMotor(.35);
-   RobotContainer.indexer.setBackMotor(.35);
+   RobotContainer.intake.isIntakeActuated = true;
+   RobotContainer.intake.setRollerMotor(intakeSpd);
+   RobotContainer.indexer.indexCargo(frontSpd, backSpd);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+   RobotContainer.intake.isIntakeActuated = false;
+   RobotContainer.intake.setRollerMotor(0);
    RobotContainer.indexer.setFrontMotor(0);
    RobotContainer.indexer.setBackMotor(0);
   }

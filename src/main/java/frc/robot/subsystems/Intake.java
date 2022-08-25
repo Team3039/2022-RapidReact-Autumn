@@ -38,8 +38,8 @@ public class Intake extends SubsystemBase {
    actuateMotor.config_kI(0, 0);
    actuateMotor.config_kD(0, 0);
 
-   actuateMotor.configForwardSoftLimitEnable(true);
-   actuateMotor.configReverseSoftLimitEnable(true);
+   actuateMotor.configForwardSoftLimitEnable(false);
+   actuateMotor.configReverseSoftLimitEnable(false);
    actuateMotor.configForwardSoftLimitThreshold(1700);
    actuateMotor.configReverseSoftLimitThreshold(0);
   }
@@ -66,7 +66,7 @@ public class Intake extends SubsystemBase {
     // actuateMotor.set(ControlMode.Position, 0);
     // setActuateMotor(isIntakeActuated);
 
-    manualIntake();
+    // manualIntake();
 
     System.out.println(actuateMotor.getSelectedSensorPosition());
     SmartDashboard.putNumber("intake encoder", actuateMotor.getSelectedSensorPosition());

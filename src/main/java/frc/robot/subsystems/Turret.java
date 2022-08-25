@@ -31,8 +31,8 @@ public Turret() {
 
  turretMotor.setNeutralMode(NeutralMode.Coast);
 
- turretMotor.configForwardSoftLimitThreshold(degreesToTicks(90)); // Needs to be configured for new turret
- turretMotor.configReverseSoftLimitThreshold(degreesToTicks(-90)); // Needs to be configured for new turret
+ turretMotor.configForwardSoftLimitThreshold(degreesToTicks(60)); // Needs to be configured for new turret
+ turretMotor.configReverseSoftLimitThreshold(degreesToTicks(-60)); // Needs to be configured for new turret
 
  turretMotor.configForwardSoftLimitEnable(true);
  turretMotor.configReverseSoftLimitEnable(true);

@@ -34,19 +34,19 @@ public void setBackMotor(double backMotorOutput) {
  backWheelMotor.set(ControlMode.PercentOutput, backMotorOutput);
  }
 
-public void indexCargo() {
+public void indexCargo(double frontSpd, double backSpd) {
  if(topGate.get()) {
-  setFrontMotor(.25);
-  setBackMotor(.25);
+  setFrontMotor(frontSpd);
+  setBackMotor(backSpd);
  }
- if((!topGate.get() && bottomGate.get())) {
-  setFrontMotor(.25);
+ else if((!topGate.get() && bottomGate.get())) {
+  setFrontMotor(frontSpd);
   setBackMotor(0);
-  } else {
+ } else {
    setFrontMotor(0);
    setBackMotor(0);
-  }
  }
+}
 
 public void unjam() {
  setFrontMotor(-.35);

@@ -16,7 +16,7 @@ public class AutoIndexCargo extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.intake.setRollerMotor(.3);
+    RobotContainer.intake.setRollerMotor(.4);
     RobotContainer.intake.isIntakeActuated = true;
 
   }
@@ -24,7 +24,7 @@ public class AutoIndexCargo extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.indexer.indexCargo();
+    RobotContainer.indexer.indexCargo(.6, .4);
   }
 
   // Called once the command ends or is interrupted.
