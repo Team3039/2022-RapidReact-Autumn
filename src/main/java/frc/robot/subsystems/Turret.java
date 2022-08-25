@@ -31,15 +31,15 @@ public Turret() {
 
  turretMotor.setNeutralMode(NeutralMode.Coast);
 
- turretMotor.configForwardSoftLimitThreshold(degreesToTicks(60)); // Needs to be configured for new turret
- turretMotor.configReverseSoftLimitThreshold(degreesToTicks(-60)); // Needs to be configured for new turret
+ turretMotor.configForwardSoftLimitThreshold(degreesToTicks(45)); // Needs to be configured for new turret
+ turretMotor.configReverseSoftLimitThreshold(degreesToTicks(-45)); // Needs to be configured for new turret
 
  turretMotor.configForwardSoftLimitEnable(true);
  turretMotor.configReverseSoftLimitEnable(true);
 
  turretMotor.config_kP(0, .2);
- turretMotor.config_kI(0, .0000001);
- turretMotor.config_kD(0, 5);
+ turretMotor.config_kI(0, .000000);
+ turretMotor.config_kD(0, 4);
     
  turretMotor.config_kP(1, 0);
  turretMotor.config_kI(1, 0);
@@ -49,7 +49,8 @@ public Turret() {
 }
 
 public void trackTarget() {
- setTurretPosition(getCurrentAngle() - targetX);
+//  setTurretPosition(-1 * (getCurrentAngle() - targetX));
+ turretMotor.set(ControlMode.PercentOutput, targetX * Constants.kP_TURRET_TRACK);
 }
 
 public void setTurretPosition(double targetAngle) {
@@ -75,6 +76,7 @@ public void resetEncoder() {
 @Override
 public void periodic() {
 // This method will be called once per scheduler run
+ SmartDashboard.putNumber("Turret Error X", (getCurrentAngle() - targetX));
  SmartDashboard.putNumber("Current Angle", getCurrentAngle());
  SmartDashboard.putNumber("TargetX", targetX);
  SmartDashboard.putNumber("Turret Encoder", turretMotor.getSelectedSensorPosition());

@@ -105,9 +105,9 @@ public class RobotContainer {
     driverOptions.toggleWhenPressed(new TrackTarget());
     
     // Shooter Rotations Per Minute
-    operatorR1.toggleWhenPressed(new SpinShooter(2500));
+    operatorR1.whileHeld(new SpinShooter(2500));
     // intake, front indexer wheels, back indexer wheels (0 is neutral, 1 is 100%)
-    operatorL1.toggleWhenPressed(new SetIndexingSequence(.4, .6, .4));
+    operatorL1.whileHeld(new SetIndexingSequence(.4, .6, .25));
     // front indexer wheels, back indexer wheels (0 is neutral, 1 is 100%)
     operatorR2.whileHeld(new FeedCargoToShooter(.4, .4));
 

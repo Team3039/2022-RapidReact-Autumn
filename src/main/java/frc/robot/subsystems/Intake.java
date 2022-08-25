@@ -23,6 +23,7 @@ public class Intake extends SubsystemBase {
   TalonSRX actuateMotor = new TalonSRX(Constants.INTAKE_ACTUATE_MOTOR);
   
   public boolean isIntakeActuated = false;
+  public boolean isIntakeSpinning = false;
 
   // Negative voltage brings intake up, positive voltage brings intake down
   public Intake() {
@@ -34,9 +35,16 @@ public class Intake extends SubsystemBase {
   //  actuateMotor.setSelectedSensorPosition(0);
    actuateMotor.setSensorPhase(true);
 
-   actuateMotor.config_kP(0, 0.1);
+  //  yes we know there is this cool thing called feed fwd, WE DONT HAVE TIME
+   // down 
+   actuateMotor.config_kP(0, 0.25);
    actuateMotor.config_kI(0, 0);
-   actuateMotor.config_kD(0, 0);
+   actuateMotor.config_kD(0, 4);
+
+   // up
+   actuateMotor.config_kP(1, 0.30);
+   actuateMotor.config_kI(1, 0);
+   actuateMotor.config_kD(1, 6);
 
    actuateMotor.configForwardSoftLimitEnable(false);
    actuateMotor.configReverseSoftLimitEnable(false);
@@ -50,11 +58,14 @@ public class Intake extends SubsystemBase {
 
   public void setActuateMotor(boolean isActuated) {
    if (isActuated) {
-   actuateMotor.set(ControlMode.Position, 1250);
+   actuateMotor.selectProfileSlot(0, 0);
+   actuateMotor.set(ControlMode.Position, 2000);
    }
    else {
+   actuateMotor.selectProfileSlot(1, 0);
    actuateMotor.set(ControlMode.Position, 50);
    }
+   SmartDashboard.putNumber("Intake Actuate Error", actuateMotor.getClosedLoopError());
   }
 
   public void manualIntake() {
@@ -63,12 +74,11 @@ public class Intake extends SubsystemBase {
 
   @Override
   public void periodic() {
-    // actuateMotor.set(ControlMode.Position, 0);
-    // setActuateMotor(isIntakeActuated);
+    setActuateMotor(isIntakeActuated);
 
     // manualIntake();
 
-    System.out.println(actuateMotor.getSelectedSensorPosition());
     SmartDashboard.putNumber("intake encoder", actuateMotor.getSelectedSensorPosition());
+    
   }
 }

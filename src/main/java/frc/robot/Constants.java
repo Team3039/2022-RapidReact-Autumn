@@ -49,6 +49,7 @@ public static final int LED_PORT_B = 1;
 
 // Turret
 public static final int TURRET_MOTOR_ID = 10;
+public static final double kP_TURRET_TRACK = .01;
 
 // Drive
  public static final double DRIVE_Y = 0.70;
