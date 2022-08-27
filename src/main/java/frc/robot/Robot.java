@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.PrintCommand;
+import frc.robot.auto.routines.TestAuto;
 import frc.robot.commands.SpinShooter;
 
 /**
@@ -37,6 +38,7 @@ public class Robot extends TimedRobot {
     autonTaskChooser = new SendableChooser<>();
 
     autonTaskChooser.setDefaultOption("Do Nothing", new PrintCommand("Do Nothing"));
+    autonTaskChooser.setDefaultOption("Test Auto", new TestAuto());
 
     SmartDashboard.putData("Autonomous", autonTaskChooser);
 

@@ -49,8 +49,16 @@ public void indexCargo(double frontSpd, double backSpd) {
 }
 
 public void unjam() {
- setFrontMotor(-.35);
+ setFrontMotor(-.4);
  setBackMotor(-.35);
+ }
+
+public boolean getBottomGate() {
+ return bottomGate.get();
+}
+
+public boolean getTopGate() {
+  return topGate.get();
  }
 
 @Override 

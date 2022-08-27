@@ -29,6 +29,8 @@ public static final int BOTTOM_BEAM_BREAK = 0;
 public static final int INTAKE_ROLLER_MOTOR = 7;
 public static final int INTAKE_ACTUATE_MOTOR = 0;
 
+public static final int LIMIT_SWITCH = 2;
+
 // Shooter
 public static final int SHOOTER_LEADER_MOTOR = 11;
 public static final int SHOOTER_FOLLOWER_MOTOR = 12;
@@ -49,7 +51,7 @@ public static final int LED_PORT_B = 1;
 
 // Turret
 public static final int TURRET_MOTOR_ID = 10;
-public static final double kP_TURRET_TRACK = .01;
+public static final double kP_TURRET_TRACK = .015;
 
 // Drive
  public static final double DRIVE_Y = 0.70;
@@ -58,6 +60,8 @@ public static final double kP_TURRET_TRACK = .01;
  public static final int LEFT_REAR_MOTOR = 2;  //RL
  public static final int RIGHT_FRONT_MOTOR = 4; //LL
  public static final int RIGHT_REAR_MOTOR = 3; //LR
+
+ public static final double AUTO_DRIVE_ROTATE_KP = 0.008;
 
  // Auto
   // 2020 Drive Constants
@@ -86,5 +90,6 @@ public static final double kP_TURRET_TRACK = .01;
   // Reasonable baseline values for a RAMSETE follower in units of meters and seconds
   public static final double kRamseteB = 2.0;
   public static final double kRamseteZeta = 0.7;
+
 
 }

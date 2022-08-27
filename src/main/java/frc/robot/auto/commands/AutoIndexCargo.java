@@ -16,7 +16,7 @@ public class AutoIndexCargo extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.intake.setRollerMotor(.4);
+    RobotContainer.intake.setRollerMotor(.35);
     RobotContainer.intake.isIntakeActuated = true;
 
   }
@@ -34,6 +34,6 @@ public class AutoIndexCargo extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    return (RobotContainer.indexer.getTopGate() && RobotContainer.indexer.getBottomGate());
   }
 }

@@ -7,32 +7,35 @@ package frc.robot.auto.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
-public class AutoStopIndex extends CommandBase {
-  /** Creates a new AutoStopIndex. */
-  public AutoStopIndex() {
+public class AutoRotateDrive extends CommandBase {
+  /** Creates a new AutoRotateDrive. */
+  double angle;
+  public AutoRotateDrive(double angle) {
     // Use addRequirements() here to declare subsystem dependencies.
+    this.angle = angle;
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-    // RobotContainer.intake.setRollerMotor(0);
-    // RobotContainer.intake.isIntakeActuated = false;
-    RobotContainer.indexer.setBackMotor(0);
-    // RobotContainer.indexer.setFrontMotor(0);
-  }
+  public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    RobotContainer.drivetrain.setRotation(angle);
+  }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    RobotContainer.drivetrain.tankDriveVolts(0, 0);
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    return (RobotContainer.drivetrain.gyro.getFusedHeading() - angle <= 15 &&
+            RobotContainer.drivetrain.gyro.getFusedHeading() - angle >= -15);
+
   }
 }

@@ -13,17 +13,18 @@ import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
     public class Drivetrain extends SubsystemBase {
-     CANSparkMax leftFrontMotor = new CANSparkMax(Constants.LEFT_FRONT_MOTOR, MotorType.kBrushless);
-     CANSparkMax leftRearMotor = new CANSparkMax(Constants.LEFT_REAR_MOTOR, MotorType.kBrushless);
-     CANSparkMax rightFrontMotor = new CANSparkMax(Constants.RIGHT_FRONT_MOTOR, MotorType.kBrushless);
-     CANSparkMax rightRearMotor = new CANSparkMax(Constants.RIGHT_REAR_MOTOR, MotorType.kBrushless);
+     public CANSparkMax leftFrontMotor = new CANSparkMax(Constants.LEFT_FRONT_MOTOR, MotorType.kBrushless);
+     public CANSparkMax leftRearMotor = new CANSparkMax(Constants.LEFT_REAR_MOTOR, MotorType.kBrushless);
+     public CANSparkMax rightFrontMotor = new CANSparkMax(Constants.RIGHT_FRONT_MOTOR, MotorType.kBrushless);
+     public CANSparkMax rightRearMotor = new CANSparkMax(Constants.RIGHT_REAR_MOTOR, MotorType.kBrushless);
 
-     PigeonIMU gyro = new PigeonIMU(RobotContainer.indexer.backWheelMotor);
+     public PigeonIMU gyro = new PigeonIMU(RobotContainer.indexer.backWheelMotor);
 
     //  DifferentialDrive drivetrain = new DifferentialDrive(leftFrontMotor, rightFrontMotor);
 
@@ -43,13 +44,15 @@ import frc.robot.RobotContainer;
      leftRearMotor.follow(leftFrontMotor);
      rightRearMotor.follow(rightFrontMotor);
 
+     gyro.setFusedHeading(0);
+
      driveOdometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(gyro.getFusedHeading()));
     }
 
     // drive using control sticks
     public void drive() {
-     double leftY = MathUtil.applyDeadband(RobotContainer.operatorPad.getLeftYAxis(), 0.05);
-     double rightX = MathUtil.applyDeadband(RobotContainer.operatorPad.getRightXAxis(), 0.05);
+     double leftY = MathUtil.applyDeadband(RobotContainer.driverPad.getLeftYAxis(), 0.05);
+     double rightX = MathUtil.applyDeadband(RobotContainer.driverPad.getRightXAxis(), 0.05);
      double y = -1 * leftY * Constants.DRIVE_Y;
      double rot = rightX * Constants.DRIVE_ROT;
     
@@ -111,6 +114,19 @@ import frc.robot.RobotContainer;
         driveOdometry.resetPosition(pose, Rotation2d.fromDegrees(getHeading()));
       }
 
+    // Timing based auto methods
+
+    public void setDriver(double leftSpeed, double rightSpeed) {
+        leftFrontMotor.set(leftSpeed);
+        rightFrontMotor.set(rightSpeed);
+    }
+
+    public void setRotation(double angle) {
+        double input = MathUtil.clamp(((gyro.getFusedHeading() - angle) * Constants.AUTO_DRIVE_ROTATE_KP), -0.7, 0.7);
+        leftFrontMotor.set(input);
+        rightFrontMotor.set(input * -1);
+    }
+
     public void periodic() {
      if (DriverStation.isAutonomous()) {
          driveOdometry.update(Rotation2d.fromDegrees(getHeading()),    
@@ -119,5 +135,8 @@ import frc.robot.RobotContainer;
      }
 
      drive();
+
+     SmartDashboard.putNumber("left drive encoder", leftFrontMotor.getEncoder().getPosition());
+     SmartDashboard.putNumber("right drive encoder", rightFrontMotor.getEncoder().getPosition());
     }    
 }

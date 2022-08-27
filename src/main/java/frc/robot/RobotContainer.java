@@ -13,6 +13,7 @@ import frc.robot.commands.SetLeftClimber;
 import frc.robot.commands.SetRightClimber;
 import frc.robot.commands.SetUnjamming;
 import frc.robot.commands.SpinShooter;
+import frc.robot.commands.ToggleManualIntake;
 import frc.robot.commands.TrackTarget;
 import frc.robot.controllers.PS4Gamepad;
 import frc.robot.subsystems.Climber;
@@ -105,14 +106,16 @@ public class RobotContainer {
     driverOptions.toggleWhenPressed(new TrackTarget());
     
     // Shooter Rotations Per Minute
-    operatorR1.whileHeld(new SpinShooter(2500));
+    operatorR1.whileHeld(new SpinShooter(2700));
     // intake, front indexer wheels, back indexer wheels (0 is neutral, 1 is 100%)
-    operatorL1.whileHeld(new SetIndexingSequence(.4, .6, .25));
+    operatorL1.whileHeld(new SetIndexingSequence(.5, .6, .25));
     // front indexer wheels, back indexer wheels (0 is neutral, 1 is 100%)
     operatorR2.whileHeld(new FeedCargoToShooter(.4, .4));
 
     operatorL2.whileHeld(new SetUnjamming());
     operatorShare.toggleWhenPressed(new TrackTarget());
+
+    operatorStartButton.toggleWhenPressed(new ToggleManualIntake());
   }
 
   public static PS4Gamepad getDriver() {

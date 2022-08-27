@@ -7,19 +7,17 @@ package frc.robot.auto.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
-public class AutoStopIndex extends CommandBase {
-  /** Creates a new AutoStopIndex. */
-  public AutoStopIndex() {
+public class AutoFeedCargo extends CommandBase {
+  /** Creates a new AutoFeedCargo. */
+  public AutoFeedCargo() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    // RobotContainer.intake.setRollerMotor(0);
-    // RobotContainer.intake.isIntakeActuated = false;
-    RobotContainer.indexer.setBackMotor(0);
-    // RobotContainer.indexer.setFrontMotor(0);
+    RobotContainer.indexer.setFrontMotor(.6);
+    RobotContainer.indexer.setBackMotor(.4);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -33,6 +31,6 @@ public class AutoStopIndex extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    return false;
   }
 }

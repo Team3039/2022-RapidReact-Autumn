@@ -12,6 +12,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -21,9 +22,11 @@ public class Intake extends SubsystemBase {
   
   CANSparkMax rollerMotor = new CANSparkMax(Constants.INTAKE_ROLLER_MOTOR, MotorType.kBrushless);
   TalonSRX actuateMotor = new TalonSRX(Constants.INTAKE_ACTUATE_MOTOR);
+
+  DigitalInput limitSwitch = new DigitalInput(Constants.LIMIT_SWITCH);
   
-  public boolean isIntakeActuated = false;
-  public boolean isIntakeSpinning = false;
+  public boolean isIntakeActuated = true;
+  public boolean isIntakeManual = false;
 
   // Negative voltage brings intake up, positive voltage brings intake down
   public Intake() {
@@ -37,17 +40,17 @@ public class Intake extends SubsystemBase {
 
   //  yes we know there is this cool thing called feed fwd, WE DONT HAVE TIME
    // down 
-   actuateMotor.config_kP(0, 0.25);
+   actuateMotor.config_kP(0, 0.35);
    actuateMotor.config_kI(0, 0);
-   actuateMotor.config_kD(0, 4);
+   actuateMotor.config_kD(0, 4.5);
 
    // up
-   actuateMotor.config_kP(1, 0.30);
+   actuateMotor.config_kP(1, 0.4);
    actuateMotor.config_kI(1, 0);
-   actuateMotor.config_kD(1, 6);
+   actuateMotor.config_kD(1, 4);
 
-   actuateMotor.configForwardSoftLimitEnable(false);
-   actuateMotor.configReverseSoftLimitEnable(false);
+   actuateMotor.configForwardSoftLimitEnable(true);
+   actuateMotor.configReverseSoftLimitEnable(true);
    actuateMotor.configForwardSoftLimitThreshold(1700);
    actuateMotor.configReverseSoftLimitThreshold(0);
   }
@@ -59,11 +62,11 @@ public class Intake extends SubsystemBase {
   public void setActuateMotor(boolean isActuated) {
    if (isActuated) {
    actuateMotor.selectProfileSlot(0, 0);
-   actuateMotor.set(ControlMode.Position, 2000);
+   actuateMotor.set(ControlMode.Position, 1340);
    }
    else {
    actuateMotor.selectProfileSlot(1, 0);
-   actuateMotor.set(ControlMode.Position, 50);
+   actuateMotor.set(ControlMode.Position, 0);
    }
    SmartDashboard.putNumber("Intake Actuate Error", actuateMotor.getClosedLoopError());
   }
@@ -72,13 +75,25 @@ public class Intake extends SubsystemBase {
     actuateMotor.set(ControlMode.PercentOutput, RobotContainer.getOperator().getLeftYAxis() * 0.15);
   }
 
+  public void limitSwitchEncoderReset() {
+    if (!limitSwitch.get()) {
+      actuateMotor.setSelectedSensorPosition(0);
+    }
+  }
+
   @Override
   public void periodic() {
+    if (!isIntakeManual) {
     setActuateMotor(isIntakeActuated);
+    }
+    else {
+    manualIntake();
+    }
 
-    // manualIntake();
+    limitSwitchEncoderReset();
 
     SmartDashboard.putNumber("intake encoder", actuateMotor.getSelectedSensorPosition());
+    SmartDashboard.putBoolean("intake limit switch", limitSwitch.get());
     
   }
 }

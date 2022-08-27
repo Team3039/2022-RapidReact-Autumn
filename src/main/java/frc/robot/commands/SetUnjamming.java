@@ -24,7 +24,7 @@ public class SetUnjamming extends CommandBase {
   @Override
   public void execute() {
    RobotContainer.indexer.unjam();
-   RobotContainer.intake.setRollerMotor(-.4);
+  //  RobotContainer.intake.setRollerMotor(-.4);
   }
 
   // Called once the command ends or is interrupted.
